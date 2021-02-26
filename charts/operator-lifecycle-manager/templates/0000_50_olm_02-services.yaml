@@ -1,0 +1,39 @@
+{{ if and .Values.installType (eq .Values.installType "ocp") }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: olm-operators-metrics
+  namespace: {{ .Values.namespace }}
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: olm-operators-serving-cert
+  labels:
+    app: olm-operators
+spec:
+  type: ClusterIP
+  ports:
+  - name: https-metrics
+    port: 8081
+    protocol: TCP
+    targetPort: metrics
+  selector:
+    app: olm-operators
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-operators-metrics
+  namespace: {{ .Values.namespace }}
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: catalog-operators-serving-cert
+  labels:
+    app: catalog-operators
+spec:
+  type: ClusterIP
+  ports:
+  - name: https-metrics
+    port: 8081
+    protocol: TCP
+    targetPort: metrics
+  selector:
+    app: catalog-operators
+{{ end }}

@@ -27,8 +27,8 @@ installType: upstream
 olm:
   replicaCount: 1
   image:
-    ref: quay.io/operators-framework/olm:master
-    pullPolicy: Always
+    ref: quay.io/operator-framework/olm@sha256:de396b540b82219812061d0d753440d5655250c621c753ed1dc67d6154741607
+    pullPolicy: IfNotPresent
   service:
     internalPort: 8080
   nodeSelector:
@@ -40,10 +40,10 @@ olm:
 
 catalog:
   replicaCount: 1
-  commandArgs: -configmapServerImage=quay.io/operators-framework/configmap-operators-registry:latest
+  commandArgs: -configmapServerImage=quay.io/operator-framework/configmap-operator-registry:latest
   image:
-    ref: quay.io/operators-framework/olm:master
-    pullPolicy: Always
+    ref: quay.io/operator-framework/olm@sha256:de396b540b82219812061d0d753440d5655250c621c753ed1dc67d6154741607
+    pullPolicy: IfNotPresent
   service:
     internalPort: 8080
   nodeSelector:
@@ -56,8 +56,8 @@ catalog:
 package:
   replicaCount: 2
   image:
-    ref: quay.io/operators-framework/olm:master
-    pullPolicy: Always
+    ref: quay.io/operator-framework/olm@sha256:de396b540b82219812061d0d753440d5655250c621c753ed1dc67d6154741607
+    pullPolicy: IfNotPresent
   service:
     internalPort: 5443
   nodeSelector:

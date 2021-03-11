@@ -47,3 +47,6 @@ monitoring:
 zookeeper:
   volumes:
     useSeparateDiskForTxlog: true
+  operator:
+    enabled: false
+  
